@@ -13,11 +13,7 @@
   <form method='GET' action='search.php'> 
      <div class="h_two">
        <img src='images/acwturtle_sm.jpg' alt='turtle'>
-     </div>
-     <div class="h_two">             
-       <input type='submit' text='submit user' class='acw.css'><br>
-     </div>
-  </form>
+
 <?php if($errors): ?>
   <div class='alert alert-danger'>
     <ul>
@@ -43,20 +39,20 @@
                        Level: <?=$usr['level']?><br> 
                        <?=$usr['description']?><br>
                      </div>  
+                     <div class="h_two">             
+                       <input type='submit' text='submit user' class='acw.css'><br>
+                     </div>
                   <?php endforeach; ?>
              <?php endif; ?>
-
-             <?php if ($login=='checkdisabled'): ?>
-                <div>
+                <div class="h_two">
                    User not authorized!
                 </div>  
-             <?php endif; ?>
-
          <?php #endif; ?>
       <?php endif; ?>
 
   <div class="alert <?=$alertType?>" role="alert"></div>
 <?php endif; ?>
-
+     </div>
+  </form>
 </body>
 </html>
