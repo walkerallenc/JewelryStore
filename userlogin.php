@@ -13,7 +13,7 @@
   <form method='GET' action='search.php'> 
      <div class="h_two">
        <img src='images/acwturtle_sm.jpg' alt='turtle'>
-
+     </div> 
 <?php if($errors): ?>
   <div class='alert alert-danger'>
     <ul>
@@ -23,8 +23,8 @@
     </ul>
   </div>
 <?php elseif($form->isSubmitted()): ?>
+  <div class="h_two">
   <div class="alert <?=$alertType?>" role="alert"></div>
-
       <?php if (isset($_GET['securitycheck'])): ?>
 
          <?php $login=$_GET['securitycheck'] ?>
@@ -40,19 +40,27 @@
                        <?=$usr['description']?><br>
                      </div>  
                      <div class="h_two">             
-                       <input type='submit' text='submit user' class='acw.css'><br>
+                       <input type='submit' text='Shop' class='/css/acw.css'><br>
                      </div>
                   <?php endforeach; ?>
-             <?php endif; ?>
-                <div class="h_two">
-                   User not authorized!
-                </div>  
-         <?php #endif; ?>
-      <?php endif; ?>
 
+<?php elseif(!is_array($authorizationResults)): ?>
+
+
+                <div class="h_two">
+                   Selected item not found!
+                </div>  
+             <?php endif; ?>
+          <?php #endif; ?>
+
+    <?php endif; ?>
   <div class="alert <?=$alertType?>" role="alert"></div>
-<?php endif; ?>
-     </div>
+  </div>
+  <?php endif; ?>
   </form>
+  <br>
+  <br>
+  <br>
+  <br>
 </body>
 </html>

@@ -1,21 +1,17 @@
 <?php
 
-require('Security.php');
-require('Warehouse.php');
 require('tools.php');
 require('Form.php');
 require('ToolsACW.php');
+require('Warehouse.php');
 
-use DWA\Security;
 use DWA\Form;
 use DWA\ToolsACW;
 use DWA\Warehouse;
 
 
 # Instantiate the objects we'll need
-$security = new DWA\Security('UsersJSON.json');
 $warehouse = new DWA\Warehouse('jewelryJSON.json');
-
 $form = new DWA\Form($_GET);
 
 $errors = [];

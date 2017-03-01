@@ -23,10 +23,6 @@
 <form method='GET' action='search.php'>   
 <!-- Trick to makes it so that if no checkboxes are selected, we still receive $_GET data -->
 <!--<input type='hidden' name='alwaysPost' value='0'>-->
-<div>
-  <?php #echo 'User not authorized!' ?>
-</div>  
-
 <?php $jcategory="";?>
 <?php $results1="";?>
 <?php $results2="";?>
@@ -47,23 +43,56 @@
   <input type='text' name='description' id='description' value='<?=sanitize($description)?>'>
   <br>
   <input type='submit' text='submit search' class='acw.css'>
+  <br>
   <label for='caseSensitivity'>Case sensitivity on </label>
   <input type='checkbox' name='caseSensitive[]' id='caseSensitivity' value='caseon' <?php if(strstr($results2, 'caseon')) echo 'CHECKED'?>> Yes
   <br>
 </div>
-<div class="h_two">
-   <div class="alert <?=$alertType?>" role="alert"></div>
-     <?php foreach($jewelry as $category => $jewelry): ?>
-        <div>
-          <img src='<?=$jewelry['picture']?>'><br>
-          Category: <?=$jcategory?><br>
-   	  Metal: <?=$jewelry['metal']?><br>
-     	  Dollar amount: <?=$jewelry['price']?>
-	</div>
-       <?php endforeach; ?>
+
+<?php if (isset($_GET['jcategory'])): ?>
+  <?php if (is_array($jewelry)): ?>
+
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!--check for invalid entry errors          -->
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<?php if($errors): ?>
+  <div class='alert alert-danger'>
+    <ul>
+      <?php foreach($errors as $error): ?>
+        <li><?=$error?></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+<?php elseif($form->isSubmitted()): ?>
+
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!--if entry validations passed             -->
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+    <div class="h_two">
       <div class="alert <?=$alertType?>" role="alert"></div>
-    </div>
-  </form>
- </body>
+        <?php foreach($jewelry as $category => $jewelry): ?>
+          <div>
+            <img src='<?=$jewelry['picture']?>'><br>
+            Category: <?=$jcategory?><br>
+            Metal: <?=$jewelry['metal']?><br>
+     	    Dollar amount: <?=$jewelry['price']?>
+	  </div>
+         <?php endforeach; ?>
+       <div class="alert <?=$alertType?>" role="alert"></div>
+     </div>
+   <?php elseif(!is_array($jewelry)): ?>
+     <div class="h_two">
+        Searched item not found!
+     </div> 
+   <?php endif; ?>
+  <?php endif; ?>
+<?php endif; ?>
+  <br>
+  <br>
+  <br>
+</form>
+</body>
 
 </html>
