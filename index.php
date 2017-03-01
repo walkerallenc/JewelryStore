@@ -25,10 +25,13 @@
         <div class="h_two">
           <!-- Trick to makes it so that if no checkboxes are selected, we still receive $_GET data -->
           <!--<input type='hidden' name='alwaysPost' value='0'>-->
+
+          <?php $login="checkenabled"; ?> 
           <?php $userlogin=""; ?> 
+
           <label  for='userlogin' class="h_one">User login</label><br>
           <input type='text' name='userlogin' id='userlogin' value='<?=sanitize($userlogin)?>'><br>
-          <input type='radio' name='securitycheck[]' id='securitycheck' value='checkenabled' 'CHECKED'> Enable security<br>
+          <input type='radio' name='securitycheck[]' id='securitycheck' value='checkenabled' <?php if(strstr($login, 'checkenabled')) echo 'CHECKED'?>> Enable security<br>
           <input type='radio' name='securitycheck[]' id='securitycheck' value='checkdisabled' > Disable security<br>
           <input type='submit' text='submit user' class='acw.css'><br>
         </div>  
@@ -45,7 +48,8 @@
   <div class="alert <?=$alertType?>" role="alert"></div>
      <?php if (isset($_GET['securitycheck'])): ?>
         <?php $login=$_GET['securitycheck'] ?>
-           <?php #if ($login=='checkenabled'): ?>
+<?=dump($login) ?>
+           <?php if ($login=='checkenabled'): ?>
 
               <?php if (is_array($authorizationResults)): ?>
        	         <?php foreach($authorizationResults as $userlogin => $usr): ?>
@@ -59,14 +63,15 @@
                     </div>  
                  <?php endforeach; ?>
               <?php endif; ?>
-
-              <?php if ($login=='checkdisabled'): ?>
+             <?php if ($login=='checkdisabled'): ?>
                  <div>
                     User not authorized!
                  </div>  
               <?php endif; ?>
+           <?php endif; ?>
 
-           <?php #endif; ?>
+<?=dump($login) ?>
+
          <?php endif; ?>
 
   <div class="alert <?=$alertType?>" role="alert"></div>

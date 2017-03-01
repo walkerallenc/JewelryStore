@@ -10,6 +10,19 @@
   <link rel="stylesheet" type="text/css" href="/css/acw.css" /> 
 </head>
 <body>
+
+
+<div class="h_one">
+  <h1>Online Jewelry Store</h1>
+</div>
+<div class="h_two">
+  <h2>user information page</h2>
+</div>
+<br>
+
+
+
+
   <form method='GET' action='search.php'> 
      <div class="h_two">
        <img src='images/acwturtle_sm.jpg' alt='turtle'>
@@ -26,10 +39,8 @@
   <div class="h_two">
   <div class="alert <?=$alertType?>" role="alert"></div>
       <?php if (isset($_GET['securitycheck'])): ?>
-
          <?php $login=$_GET['securitycheck'] ?>
-         <?php #if ($login=='checkenabled'): ?>
- 
+   	   <?php foreach($login as $loginchecked => $usrchecked): ?>
              <?php if (is_array($authorizationResults)): ?>
    	          <?php foreach($authorizationResults as $userlogin => $usr): ?>
                     <div class="h_two">
@@ -43,16 +54,12 @@
                        <input type='submit' text='Shop' class='/css/acw.css'><br>
                      </div>
                   <?php endforeach; ?>
-
-<?php elseif(!is_array($authorizationResults)): ?>
-
-
-                <div class="h_two">
-                   Selected item not found!
-                </div>  
-             <?php endif; ?>
-          <?php #endif; ?>
-
+         <?php elseif(!is_array($authorizationResults)): ?>
+                 <div class="h_two">
+                    Login failed!
+                 </div>  
+         <?php endif; ?>
+       <?php endforeach; ?>
     <?php endif; ?>
   <div class="alert <?=$alertType?>" role="alert"></div>
   </div>

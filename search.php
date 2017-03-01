@@ -15,6 +15,12 @@
   <h1>Online Jewelry Store</h1>
 </div>
 <div class="h_two">
+  <h2>jewelry search page</h2>
+</div>
+<br>
+
+
+<div class="h_two">
   <img src='images/acwturtle_sm.jpg' alt='turtle'>
   <h2>Jewelry Selection Criteria</h2>
 </div>
@@ -42,10 +48,10 @@
   <label for='description' class="h_one">Description</label><br>
   <input type='text' name='description' id='description' value='<?=sanitize($description)?>'>
   <br>
-  <input type='submit' text='submit search' class='acw.css'>
-  <br>
   <label for='caseSensitivity'>Case sensitivity on </label>
   <input type='checkbox' name='caseSensitive[]' id='caseSensitivity' value='caseon' <?php if(strstr($results2, 'caseon')) echo 'CHECKED'?>> Yes
+  <br>
+  <input type='submit' text='submit search' class='acw.css'>
   <br>
 </div>
 
