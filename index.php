@@ -48,33 +48,10 @@
   <div class="alert <?=$alertType?>" role="alert"></div>
      <?php if (isset($_GET['securitycheck'])): ?>
         <?php $login=$_GET['securitycheck'] ?>
-<?=dump($login) ?>
-           <?php if ($login=='checkenabled'): ?>
 
-              <?php if (is_array($authorizationResults)): ?>
-       	         <?php foreach($authorizationResults as $userlogin => $usr): ?>
-                    <div>
-                      <img src='<?=$usr['picture']?>'><br>
-                      Logged in user: <?=$usr['name']?><br>
-                      Account #: <?=$usr['accountnumber']?><br>
-                      Level: <?=$usr['level']?><br> 
-                      <?=$usr['description']?><br>
-                      <input type='submit' text='submit user' class='acw.css'><br>
-                    </div>  
-                 <?php endforeach; ?>
-              <?php endif; ?>
-             <?php if ($login=='checkdisabled'): ?>
-                 <div>
-                    User not authorized!
-                 </div>  
-              <?php endif; ?>
-           <?php endif; ?>
+<!-- remove unused code from here -->
 
-<?=dump($login) ?>
-
-         <?php endif; ?>
-
-  <div class="alert <?=$alertType?>" role="alert"></div>
+    <?php endif; ?>
 <?php endif; ?>
 </body>
 
